@@ -1,23 +1,38 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { useState } from 'react';
 
 function App() {
+  const [count, setCount] = useState(0)
+  const [errMessage, setErrMessage] = useState('')
+
+  const incrementCount = () => {
+    if (count >= 0) {
+      setCount(count + 1)
+      setErrMessage(' ')
+    }
+  }
+  const decrementCount = () => count <= 0 ? setErrMessage('The counter can not go below zero') : setCount(count - 1)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div data-test="component-app">
+      <h1 data-test="counter-display">
+        The counter is currently &nbsp;
+        <span data-test='count'>{count}</span>
+      </h1>
+      <button
+        data-test='increment-button'
+        onClick={incrementCount}
+      >
+        Increment counter
+      </button>
+      <button
+        data-test='decrement-button'
+        onClick={decrementCount}
+      >
+        decrement counter
+      </button>
+
+      <h2 data-test='error-message'>{errMessage}</h2>
     </div>
   );
 }
