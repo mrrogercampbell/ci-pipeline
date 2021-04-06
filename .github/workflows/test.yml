@@ -1,4 +1,5 @@
-name: CI
+# Name of Workflow
+name: Test Workflow
 on: 
   pull_request:
     branches:
